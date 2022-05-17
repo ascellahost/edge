@@ -4,6 +4,11 @@ const ASCELLA_REPO = "ascellahost/tsunami";
 
 serve((req) => {
   const url = new URL(req.url);
+  if (url.hostname.includes("deno.dev") && url.pathname == "/") {
+    return new Response(
+      "Pipelines is free to take if you dm tricked#3777 on discord i can transfer it over!",
+    );
+  }
   const path = url.pathname.replace("/", "");
   if (path == "latest") {
     return Response.redirect(
