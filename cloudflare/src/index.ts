@@ -7,15 +7,39 @@ export default {
     }
   },
 };
-const headers = ["discord", "github", "twitter", "youtube", "instagram", "linkedin", "github", "twitter", "youtube", "instagram", "linkedin", "element", "revolt", "curl", "matrix", "cinny", "reddit"];
+const headers = [
+  "discord",
+  "github",
+  "twitter",
+  "youtube",
+  "instagram",
+  "linkedin",
+  "github",
+  "twitter",
+  "youtube",
+  "instagram",
+  "linkedin",
+  "element",
+  "revolt",
+  "curl",
+  "matrix",
+  "cinny",
+  "reddit",
+];
 
 async function handleRequest(req: Request) {
   const name = new URL(req.url).pathname.split("/").at(-1) || "";
   if (name.includes(".")) {
     const [id, ext] = name.split(".");
-    return Response.redirect(`https://ascella.wtf/v2/ascella/view/${id}.${ext}`);
+    return Response.redirect(
+      `https://ascella.wtf/v2/ascella/view/${id}.${ext}`,
+    );
   }
-  if (headers.some(x => req.headers.get("user-agent")?.toLowerCase().includes(x))) {
+  if (
+    headers.some((x) =>
+      req.headers.get("user-agent")?.toLowerCase().includes(x)
+    )
+  ) {
     const r = await fetch(
       `https://ascella.wtf/v2/ascella/view/${name}/stats`,
     );
@@ -42,9 +66,16 @@ async function handleRequest(req: Request) {
           `<title>${rson.user_name} | Ascella.host</title>`,
           `<meta charset="utf-8">`,
           `<meta name="robots" content="noindex">`,
-          rson.embed?.color ? `<meta name="theme-color" content="${rson.embed?.color}">` : "",
-          rson.embed?.title ? `<meta property="og:title" content="${rson.embed?.title}">` : "",
-          rson.embed?.description ? `<meta property="og:description" content="${rson.embed?.description}">` : "",
+          rson.embed?.color
+            ? `<meta name="theme-color" content="${rson.embed?.color}">`
+            : "",
+          rson.embed?.title
+            ? `<meta property="og:title" content="${rson.embed?.title}">`
+            : "",
+          rson.embed?.description
+            ? `<meta property="og:description" content="${rson.embed
+              ?.description}">`
+            : "",
           `<meta property="og:image" content="${`https://ascella.wtf/v2/ascella/view/${name}.png`}">`,
           `<meta property="twitter:card" content="summary_large_image">`,
           `</head>`,
