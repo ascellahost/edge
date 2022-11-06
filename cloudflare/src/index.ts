@@ -32,7 +32,7 @@ async function handleRequest(req: Request) {
   if (name.includes(".")) {
     const [id, ext] = name.split(".");
     return Response.redirect(
-      `https://ascella.wtf/v2/ascella/view/${id}.${ext}`,
+      `https://api.ascella.host/v2/ascella/view/${id}.${ext}`,
     );
   }
   if (
@@ -41,7 +41,7 @@ async function handleRequest(req: Request) {
     )
   ) {
     const r = await fetch(
-      `https://ascella.wtf/v2/ascella/view/${name}/stats`,
+      `https://api.ascella.host/v2/ascella/view/${name}/stats`,
     );
 
     if (r.ok) {
