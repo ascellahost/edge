@@ -76,11 +76,11 @@ async function handleRequest(req: Request) {
             ? `<meta property="og:description" content="${rson.embed
               ?.description}">`
             : "",
-          `<meta property="og:image" content="${`https://ascella.wtf/v2/ascella/view/${name}.png`}">`,
+          `<meta property="og:image" content="${`https://api.ascella.host/v2/ascella/view/${name}.png`}">`,
           `<meta property="twitter:card" content="summary_large_image">`,
           `</head>`,
           `<body>`,
-          `<img src="${`https://ascella.wtf/v2/ascella/view/${name}.png`}">`,
+          `<img src="${`https://api.ascella.host/v2/ascella/view/${name}.png`}">`,
           `</body>`,
           `</html>`,
         ].join(""),
